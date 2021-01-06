@@ -31,6 +31,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#code_format">Code Format</a></li>
                 </ul>
             </div>
         </nav>
@@ -241,6 +242,24 @@
                             Place - James Buchanan High School - Hackathon 2005
                         </li>
                     </ul>
+                </div>
+            </section>
+            <section class="resume-section" id="code_format">
+                <div class="resume-section-content">
+                    <u>
+                        <h5>PHP API Response Format</h5> 
+                    </u>
+                    <code>
+                            $response = (object)[<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;'data'=> $product,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;'status' => (object)[<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'code' => 200,<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'message' => 'Found'<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;],<br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;'validation_errors' => []<br>
+                        ];<br>
+                        return $response;
+                    </code>
                 </div>
             </section>
         </div>
