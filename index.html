@@ -5,9 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <meta http-equiv='cache-control' content='no-cache'> 
-        <meta http-equiv='expires' content='0'> 
-        <meta http-equiv='pragma' content='no-cache'>
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta http-equiv="pragma" content="no-cache" />
         <title>Resume - IBRAHIM KHALIL TANIM</title>
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -17,6 +17,25 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            .container {
+                max-width: 800px;
+                background: white;
+                padding: 20px;
+                border-radius: 8px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+            h1,
+            h2 {
+                color: #333;
+            }
+            ul {
+                padding-left: 20px;
+            }
+            a:hover {
+            text-decoration: underline;
+        }
+        </style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -35,6 +54,7 @@
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#awards">Awards</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#code_format">Code Format</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#clean_code">Clean Code</a></li>
                 </ul>
             </div>
         </nav>
@@ -49,16 +69,13 @@
                         <!-- Tanim -->
                     </h1>
                     <div class="subheading mb-5">
-                        MONOWARA HEIGHTS, 15/D/5, Mirbagh, Mogh Bazar,Dhaka-1217
+                        Rose Garden, Road-8,Block-E, Near Madina Moshjid, Banasree, Dhaka - 1219
                         <!-- 3542 Berry Street · Cheyenne Wells, CO 80810 · (317) 585-8468 · -->
                         <a href="mailto:ibrahimkhaliltanim@gmail.com">ibrahimkhaliltanim@gmail.com</a>
                     </div>
-                    <p class="lead mb-5" style="text-align: justify;">
+                    <p class="lead mb-5" style="text-align: justify">
                         <!-- I am experienced in leveraging agile frameworks to provide a robust synopsis for high level overviews. Iterative approaches to corporate strategy foster collaborative thinking to further the overall value proposition. -->
-                        I am an individual seeking a computer science & engineering position
-                        where I can work in a challenging environment and gain experience as
-                        a part of a team to do some innovative work and develop new
-                        software products with my academic knowledge and experiences
+                        I am an individual seeking a computer science & engineering position where I can work in a challenging environment and gain experience as a part of a team to do some innovative work and develop new software products with my academic knowledge and experiences
                     </p>
                     <div class="social-icons">
                         <a class="social-icon" href="https://github.com/IKTANIM"><i class="fab fa-github"></i></a>
@@ -115,36 +132,24 @@
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-3">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Bachelor of Science in Computer Science & Engineering</h3>
-                            <div class="subheading mb-3">
-                                American International University Bangladesh
-                            </div>
-                            <p>
-                                CGPA : 3.88 out of 4.00
-                            </p>
+                            <div class="subheading mb-3">American International University Bangladesh</div>
+                            <p>CGPA : 3.88 out of 4.00</p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">April, 2015 - April, 2019</span></div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">
-                                Higher Secondary Certificate
-                            </h3>
+                            <h3 class="mb-0">Higher Secondary Certificate</h3>
                             <div class="subheading mb-3">Comilla Government College</div>
-                            <p>
-                                GPA : 4.40 out of 5.00
-                            </p>
+                            <p>GPA : 4.40 out of 5.00</p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">Year (2012 - 2014)</span></div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
-                            <h3 class="mb-0">
-                                Secondary School Certificate
-                            </h3>
+                            <h3 class="mb-0">Secondary School Certificate</h3>
                             <div class="subheading mb-3">Comilla Zilla School</div>
-                            <p>
-                                GPA : 4.88 out of 5.00
-                            </p>
+                            <p>GPA : 4.88 out of 5.00</p>
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">Year (2010 - 2012)</span></div>
                     </div>
@@ -250,19 +255,62 @@
             <section class="resume-section" id="code_format">
                 <div class="resume-section-content">
                     <u>
-                        <h5>PHP API Response Format</h5> 
+                        <h5>PHP API Response Format</h5>
                     </u>
                     <code>
-                            $response = (object)[<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;'data'=> $product,<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;'status' => (object)[<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'code' => 200,<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'message' => 'Found'<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;],<br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;'validation_errors' => []<br>
-                        ];<br>
+                        $response = (object)[<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;'data'=> $product,<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;'status' => (object)[<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'code' => 200,<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'message' => 'Found'<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;],<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;'validation_errors' => []<br />
+                        ];<br />
                         return $response;
                     </code>
+                </div>
+            </section>
+            <section class="resume-section" id="clean_code">
+                <div class="resume-section-content">
+                    <u>
+                        <h5>Clean Code Standards</h5>
+                    </u>
+                    <div class="container">
+                        <h1>Clean Code Guidelines</h1>
+                        <p>According to the book <strong>“Clean Code”</strong> by Uncle Bob, he defined some guidelines and rules that developers should follow. This is more imperative for less experienced developers. With more experience comes the possibility of breaking some rules or reinventing them with justifications.</p>
+
+                        <h2>No code comments</h2>
+                        <p>A good code needs no comment. The variables, methods, and any other component of the code such as attributes should use easily identifiable and descriptive names.</p>
+                        <blockquote>“Code comments are smell, remove them.”</blockquote>
+
+                        <h2>Dead comments or code should be deleted</h2>
+                        <p>Any unused piece of code or comments should be deleted. The best place to find them is in the version control systems.</p>
+
+                        <h2>Incorrect behavior at boundaries</h2>
+                        <p>Boundaries should always be unit tested. No behavior should be assumed.</p>
+
+                        <h2>Positive conditionals</h2>
+                        <p>Positive conditionals are easier to read than negative conditionals.</p>
+
+                        <h2>Standard architecture, coding, and design guidelines should be followed</h2>
+                        <p>All the set standard architecture, coding, and design guidelines should be adhered to. Tools should also be used to ensure that this is accurate.</p>
+
+                        <h2>Good and Consistent naming</h2>
+                        <p>Try to call variables, methods, and classes in a way that is understandable from the caller’s perspective. And it should be consistent.</p>
+
+                        <h2>KISS principle should be applied</h2>
+                        <p>Needless complexity should be avoided. With an increase in complexity, some design and codes in the system become useless. All designs and codes should be kept as simple as possible.</p>
+
+                        <h2>Use of exceptions instead of return codes</h2>
+                        <p>In exceptional cases, an exception should be thrown when the method fails to do its intended purpose. Null or return codes shouldn’t be used.</p>
+
+                        <h2>Make things small</h2>
+                        <p>Class size and method size both matter. Typically, a method should be small and compact in size, ideally less than 100 lines of code.</p>
+
+                        <h2>Boy Scout Rule - Leave the campground cleaner than you found it</h2>
+                        <p>Leave the campground cleaner than you found it. Don’t ask for permission to refactor the code.</p>
+                        <p>For more details, check out the original article: <a href="https://blog.stackademic.com/top-10-clean-code-rules-831fb34caff7" target="_blank">Top 10 Clean Code Rules</a></p>
+                    </div>
                 </div>
             </section>
         </div>
