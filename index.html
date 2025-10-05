@@ -44,6 +44,10 @@
             background: var(--bg-primary);
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -323,21 +327,25 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: var(--bg-primary);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--text-primary);
             font-size: 1.25rem;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: var(--shadow);
+            border: 1px solid rgba(255, 255, 255, 0.8);
         }
 
         .social-links a:hover {
-            background: var(--primary-color);
+            background: linear-gradient(135deg, var(--primary-color) 0%, #6366f1 100%);
             color: white;
-            transform: translateY(-3px);
-            box-shadow: var(--shadow-lg);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
+            border-color: transparent;
         }
 
         .cta-button {
@@ -643,12 +651,25 @@
         }
 
         .skill-item {
-            background: var(--bg-secondary);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 0.6rem 1.2rem;
+            border-radius: 25px;
             font-size: 0.875rem;
+            font-weight: 500;
             color: var(--text-primary);
-            border: 1px solid var(--border-color);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: default;
+        }
+
+        .skill-item:hover {
+            background: rgba(37, 99, 235, 0.1);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.15);
         }
 
         /* Education Section */
@@ -712,17 +733,34 @@
         }
 
         .contact-item {
-            background: var(--bg-primary);
-            border-radius: 8px;
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.8);
             text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            background: rgba(255, 255, 255, 0.85);
         }
 
         .contact-item i {
             font-size: 2rem;
             color: var(--primary-color);
             margin-bottom: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            transform: scale(1.2);
+            color: #6366f1;
         }
 
         .contact-item h3 {
@@ -872,6 +910,11 @@
 
             .hero-title {
                 font-size: 2rem;
+            }
+
+            .hero-content {
+                padding: 2rem 1.5rem;
+                border-radius: 20px;
             }
 
             section {
@@ -1234,11 +1277,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Ibrahim Khalil Tanim. All rights reserved.</p>
-    </footer>
-
     <script>
         // Mobile menu toggle
         function toggleMenu() {
@@ -1334,6 +1372,20 @@
                 behavior: 'smooth'
             });
         }
+    </script>
+
+    <!-- Footer -->
+    <footer style="background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border-top: 1px solid rgba(0, 0, 0, 0.06); padding: 2rem 0; text-align: center;">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 0 2rem;">
+            <p style="color: var(--text-secondary); font-size: 0.875rem;">
+                &copy; <span id="currentYear"></span> Ibrahim Khalil Tanim. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
