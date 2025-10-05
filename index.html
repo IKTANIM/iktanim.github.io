@@ -1269,10 +1269,10 @@
                 <h3>Phone</h3>
                 <a href="tel:+8801744146190">+880 1744 146190</a>
             </div>
-            <div class="contact-item">
+            <div class="contact-item" onclick="copyAddress()" style="cursor: pointer;">
                 <i class="fas fa-map-marker-alt"></i>
                 <h3>Location</h3>
-                <p style="color: var(--text-secondary); margin: 0;">BORNALI-1, 476/D.D.I.T. ROAD,<br>MALIBAGH, DHAKA-1217</p>
+                <p style="color: var(--text-secondary); margin: 0;">Rose Garden, Road-8, Block-E,<br>Near Madina Moshjid, Banasree, Dhaka - 1219</p>
             </div>
         </div>
     </section>
@@ -1370,6 +1370,21 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        }
+
+        // Copy address to clipboard
+        function copyAddress() {
+            const address = 'Rose Garden, Road-8, Block-E, Near Madina Moshjid, Banasree, Dhaka - 1219';
+            navigator.clipboard.writeText(address).then(() => {
+                // Show temporary feedback
+                const originalText = event.currentTarget.querySelector('h3').textContent;
+                event.currentTarget.querySelector('h3').textContent = 'Address Copied!';
+                setTimeout(() => {
+                    event.currentTarget.querySelector('h3').textContent = originalText;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy address:', err);
             });
         }
     </script>
