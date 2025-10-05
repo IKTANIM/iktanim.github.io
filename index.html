@@ -223,7 +223,7 @@
         }
 
         .hero-content {
-            max-width: 1200px;
+            max-width: 1000px;
             text-align: center;
             position: relative;
             z-index: 1;
@@ -231,7 +231,7 @@
             backdrop-filter: blur(20px) saturate(180%);
             -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-radius: 32px;
-            padding: 3rem;
+            padding: 3rem 2rem;
             box-shadow: 0 20px 60px rgba(0, 0, 0, 0.08), 0 0 1px rgba(0, 0, 0, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.8);
         }
@@ -1272,20 +1272,25 @@
             let current = '';
             const sections = document.querySelectorAll('section');
             const navHeight = document.querySelector('nav').offsetHeight;
-            const scrollPosition = window.scrollY;
+            const scrollPosition = window.scrollY + navHeight + 200;
 
             sections.forEach(section => {
-                const sectionTop = section.offsetTop - navHeight - 150;
-                const sectionBottom = sectionTop + section.offsetHeight;
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
 
-                if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
                     current = section.getAttribute('id');
                 }
             });
 
             // If at top of page, set 'about' as active
-            if (scrollPosition < 100) {
+            if (window.scrollY < 100) {
                 current = 'about';
+            }
+
+            // If near bottom of page, set 'contact' as active
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
+                current = 'contact';
             }
 
             document.querySelectorAll('.nav-links a').forEach(link => {
