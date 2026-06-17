@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Baby Letters 🎈</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    height: 100%;
+    overflow: hidden;
+    font-family: "Comic Sans MS", "Chalkboard SE", "Marker Felt", sans-serif;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffe9f0;
+    transition: background 0.4s ease;
+    cursor: default;
+  }
+
+  #card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1vmin;
+    will-change: transform;
+  }
+
+  #card.pop { animation: pop 0.45s ease-out; }
+
+  @keyframes pop {
+    0%   { transform: scale(0.2) rotate(-12deg); opacity: 0; }
+    60%  { transform: scale(1.12) rotate(4deg);  opacity: 1; }
+    100% { transform: scale(1) rotate(0deg); }
+  }
+
+  #letter {
+    font-size: 34vmin;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    text-shadow: 0 1vmin 0 rgba(0, 0, 0, 0.15);
+  }
+
+  #emoji {
+    font-size: 22vmin;
+    line-height: 1.15;
+    text-align: center;
+    max-width: 92vw;
+  }
+
+  /* digit mode: rows of balloons must fit on screen with the words */
+  #emoji.balloons {
+    font-size: 9vmin;
+    line-height: 1.2;
+  }
+
+  #word {
+    font-size: 8vmin;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0.5vmin 0 rgba(0, 0, 0, 0.15);
+  }
+
+  #bangla {
+    font-size: 7vmin;
+    color: rgba(255, 255, 255, 0.92);
+    text-shadow: 0 0.5vmin 0 rgba(0, 0, 0, 0.12);
+  }
+
+  #hint {
+    position: absolute;
+    bottom: 4vh;
+    width: 100%;
+    text-align: center;
+    font-size: 3.5vmin;
+    color: rgba(0, 0, 0, 0.35);
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+  <div id="card">
+    <div id="letter">👶</div>
+    <div id="emoji"></div>
+    <div id="word"></div>
+    <div id="bangla"></div>
+  </div>
+  <div id="hint">Press any key — or tap the screen!</div>
+
+<script>
+  const cardEl   = document.getElementById('card');
+  const letterEl = document.getElementById('letter');
+  const emojiEl  = document.getElementById('emoji');
+  const wordEl   = document.getElementById('word');
+  const banglaEl = document.getElementById('bangla');
+  const hintEl   = document.getElementById('hint');
+
+  // letter → { emoji, word, bangla, sound (animal noise, spoken playfully) }
+  const LETTERS = {
+    A: { emoji: '🍎', word: 'Apple',      bangla: 'আপেল' },
+    B: { emoji: '🐝', word: 'Bee',        bangla: 'মৌমাছি',  sound: 'Buzz buzz buzz!' },
+    C: { emoji: '🐱', word: 'Cat',        bangla: 'বিড়াল',   sound: 'Meow meow!' },
+    D: { emoji: '🐶', word: 'Dog',        bangla: 'কুকুর',    sound: 'Woof woof!' },
+    E: { emoji: '🐘', word: 'Elephant',   bangla: 'হাতি' },
+    F: { emoji: '🐸', word: 'Frog',       bangla: 'ব্যাঙ',    sound: 'Ribbit ribbit!' },
+    G: { emoji: '🐐', word: 'Goat',       bangla: 'ছাগল',    sound: 'Maa maa!' },
+    H: { emoji: '🐴', word: 'Horse',      bangla: 'ঘোড়া',    sound: 'Neigh neigh!' },
+    I: { emoji: '🍦', word: 'Ice cream',  bangla: 'আইসক্রিম' },
+    J: { emoji: '🧃', word: 'Juice',      bangla: 'জুস' },
+    K: { emoji: '🪁', word: 'Kite',       bangla: 'ঘুড়ি' },
+    L: { emoji: '🦁', word: 'Lion',       bangla: 'সিংহ',    sound: 'Roarrr!' },
+    M: { emoji: '🐵', word: 'Monkey',     bangla: 'বানর',    sound: 'Ooh ooh ah ah!' },
+    N: { emoji: '👃', word: 'Nose',       bangla: 'নাক' },
+    O: { emoji: '🦉', word: 'Owl',        bangla: 'পেঁচা',    sound: 'Hoo hoo!' },
+    P: { emoji: '🦜', word: 'Parrot',     bangla: 'টিয়া',    sound: 'Squawk squawk!' },
+    Q: { emoji: '👑', word: 'Queen',      bangla: 'রানী' },
+    R: { emoji: '🐰', word: 'Rabbit',     bangla: 'খরগোশ' },
+    S: { emoji: '🐍', word: 'Snake',      bangla: 'সাপ',     sound: 'Sssssss!' },
+    T: { emoji: '🐯', word: 'Tiger',      bangla: 'বাঘ',     sound: 'Roarrr!' },
+    U: { emoji: '☂️', word: 'Umbrella',   bangla: 'ছাতা' },
+    V: { emoji: '🎻', word: 'Violin',     bangla: 'বেহালা' },
+    W: { emoji: '🍉', word: 'Watermelon', bangla: 'তরমুজ' },
+    X: { emoji: '🩻', word: 'X-ray',      bangla: 'এক্স-রে' },
+    Y: { emoji: '🪀', word: 'Yo-yo',      bangla: 'ইয়ো-ইয়ো' },
+    Z: { emoji: '🦓', word: 'Zebra',      bangla: 'জেব্রা' },
+  };
+
+  // digit → { word, bangla } — emoji is that many balloons
+  const NUMBERS = {
+    0: { word: 'Zero',  bangla: 'শূন্য' },
+    1: { word: 'One',   bangla: 'এক' },
+    2: { word: 'Two',   bangla: 'দুই' },
+    3: { word: 'Three', bangla: 'তিন' },
+    4: { word: 'Four',  bangla: 'চার' },
+    5: { word: 'Five',  bangla: 'পাঁচ' },
+    6: { word: 'Six',   bangla: 'ছয়' },
+    7: { word: 'Seven', bangla: 'সাত' },
+    8: { word: 'Eight', bangla: 'আট' },
+    9: { word: 'Nine',  bangla: 'নয়' },
+  };
+
+  const colors = [
+    '#FF6B6B', '#4ECDC4', '#FFD93D', '#6BCB77', '#4D96FF',
+    '#FF9F45', '#C780FA', '#FF78C4', '#3EC1D3', '#A8DF8E'
+  ];
+
+  let lastColor = '';
+  function randomColor() {
+    let c;
+    do { c = colors[Math.floor(Math.random() * colors.length)]; } while (c === lastColor);
+    lastColor = c;
+    return c;
+  }
+
+  // ---- Speech -------------------------------------------------------------
+
+  let banglaVoice = null;
+  function loadVoices() {
+    const voices = speechSynthesis.getVoices();
+    banglaVoice = voices.find(v => v.lang.toLowerCase().startsWith('bn')) || null;
+  }
+  loadVoices();
+  speechSynthesis.onvoiceschanged = loadVoices;
+
+  function utter(text, { lang = 'en-US', rate = 0.8, pitch = 1.2, voice = null } = {}) {
+    const u = new SpeechSynthesisUtterance(text);
+    u.lang = lang;
+    u.rate = rate;
+    u.pitch = pitch;
+    if (voice) u.voice = voice;
+    speechSynthesis.speak(u);
+    return u;
+  }
+
+  // Bangla uses bundled neural-voice clips (audio/bn/*.mp3) — much better
+  // than the robotic system TTS, and a real Bangladeshi (bn-BD) accent.
+  const banglaAudio = new Audio();
+  let seq = 0; // invalidates pending playback when baby presses the next key
+
+  function playBangla(char, entry, mySeq) {
+    if (mySeq !== seq) return;
+    banglaAudio.src = 'audio/bn/' + char + '.mp3';
+    banglaAudio.play().catch(() => {
+      // clip missing or blocked → fall back to system TTS voice if installed
+      if (banglaVoice) utter(entry.bangla, { lang: banglaVoice.lang, voice: banglaVoice });
+    });
+  }
+
+  // "C ... Cat ... Meow meow! ... বিড়াল"
+  function speakEntry(char, entry) {
+    speechSynthesis.cancel(); // stay responsive while baby smashes keys
+    banglaAudio.pause();
+    const mySeq = ++seq;
+
+    utter(char.toLowerCase());            // letter name ("c", not "capital C")
+    let last = utter(entry.word);         // English word
+    if (entry.sound) {
+      last = utter(entry.sound, { pitch: 1.4, rate: 0.9 });  // playful animal noise
+    }
+    // Bangla clip plays once the English part finishes
+    last.onend = () => playBangla(char, entry, mySeq);
+  }
+
+  // ---- Display ------------------------------------------------------------
+
+  function show(char) {
+    char = char.toUpperCase();
+    const isDigit = /[0-9]/.test(char);
+    const entry = isDigit ? NUMBERS[char] : LETTERS[char];
+    if (!entry) return;
+
+    hintEl.style.display = 'none';
+    document.body.style.background = randomColor();
+
+    letterEl.textContent = char;
+    emojiEl.textContent  = isDigit ? '🎈'.repeat(Number(char)) : entry.emoji;
+    emojiEl.classList.toggle('balloons', isDigit);
+    wordEl.textContent   = entry.word;
+    banglaEl.textContent = entry.bangla;
+
+    // restart pop animation even when the same key repeats
+    cardEl.classList.remove('pop');
+    void cardEl.offsetWidth;
+    cardEl.classList.add('pop');
+
+    speakEntry(char, entry);
+  }
+
+  // ---- Input: keyboard ----------------------------------------------------
+
+  window.addEventListener('keydown', (e) => {
+    // block browser shortcuts/navigation while baby smashes the keyboard
+    if (e.key === ' ' || e.key === 'Backspace' || e.key === 'Tab' || e.key === '/') {
+      e.preventDefault();
+    }
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+
+    if (/^[a-zA-Z0-9]$/.test(e.key)) {
+      e.preventDefault();
+      show(e.key);
+    }
+  });
+
+  // ---- Input: touch / tap → random letter -----------------------------------
+
+  const ALPHABET = Object.keys(LETTERS);
+  window.addEventListener('pointerdown', (e) => {
+    if (!e.isPrimary) return;
+    show(ALPHABET[Math.floor(Math.random() * ALPHABET.length)]);
+  });
+
+  // no zoom / context menu on long-press
+  window.addEventListener('contextmenu', (e) => e.preventDefault());
+</script>
+
+</body>
+</html>
